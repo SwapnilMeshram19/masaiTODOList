@@ -6,12 +6,12 @@
     margin: auto;
     margin-top: 50px;
 }
-#task-input{
+#edit-input{
     width:80%;
     padding: 5px;
     border-radius: 5px;
 }
-#checkbox{
+#edit-checkbox{
     width:14%;
     height: 20px;
     padding: 10px;
@@ -20,7 +20,7 @@
     vertical-align: middle;
 }
 
-#add-button{
+#edit-button{
     width:40%;
     margin-left: 30%;
     margin-top: 20px;

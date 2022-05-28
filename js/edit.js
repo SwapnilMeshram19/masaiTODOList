@@ -1,26 +1,47 @@
 
-var data=localStorage.getItem('tasks');
-console.log(JSON.parse(data));
+var data=JSON.parse(localStorage.getItem('tasks'));
 
-var title=document.getElementById('task-input');
+let title=document.getElementById('edit-input');
+let statuss=document.getElementById('edit-checkbox');
 
 
-let status=document.getElementById('checkbox').checked;
+title.value=data.title;
+statuss.checked=data.status;
 
-var editButton=document.getElementById("add-button");
+var editButton=document.getElementById("edit-button");
 editButton.addEventListener('click',function(){
-    let title=document.getElementById('task-input').value;
 
-    let status=document.getElementById('checkbox').checked;
+    let title=document.getElementById('edit-input').value;
+    let statuss=document.getElementById('edit-checkbox').checked; 
+    let id=data.id;
     let body ={
         title,
-        status
+        statuss,
+        id
     };
 
     if(body.title==""){
         alert('please enter task');
     }else{
-        createtask(body);
+        putReq(body);
     }
     
 });
+
+
+async function putReq(body){
+    try {
+        await fetch('http://localhost:3000/tasks',{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json"
+                
+            },
+            body: JSON.stringify(body),
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
